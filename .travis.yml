@@ -1,0 +1,49 @@
+language: node_js
+node_js:
+  - 12
+jobs:
+  include:
+    - stage: master
+      name: "master"
+      if: branch = master
+      script: 
+        - npm install -g hexo
+        - hexo clean
+        - hexo generate
+        - git remote -v
+        - git checkout --orphan gh-pages
+        - git config user.name "Travis CI"
+        - git branch -v -a
+        - git rm --cached -r -f .
+        - rm -rf `ls | grep -v public`
+        - cp -r ./public/* .
+        - rm -rf ./public
+        - git add -f .
+        - git commit -m "Auto Release `date +"%Y-%m-%d %H:%M:%S"`"
+        - git push -f https://${GITHUB_USERNAME}:${GITHUB_PASSWD}@github.com/SpiritLing/blog.git
+    - stage: dev
+      name: "dev"
+      if: branch = dev
+      script: 
+        - npm install -g hexo
+        - mv -f _config.dev.yml _config.yml
+        - hexo clean
+        - hexo generate
+        - git remote -v
+        - git checkout --orphan dev-blog
+        - git config user.name "Travis CI"
+        - git branch -v -a
+        - git rm --cached -r -f .
+        - rm -rf `ls | grep -v public`
+        - cp -r ./public/* .
+        - rm -rf ./public
+        - git add -f .
+        - git commit -m "Auto Release `date +"%Y-%m-%d %H:%M:%S"`"
+        - git push -f https://${CODING_USERNAME}:${CODING_PASSWD}@e.coding.net/spiritling/dev.git
+
+notifications:
+  email:
+    recipients:
+      - ling_dark_portal@163.com
+    on_success: never # default: change
+    on_failure: always # default: always

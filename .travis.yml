@@ -32,6 +32,10 @@ jobs:
         - hexo clean
         - hexo generate
         - git remote -v
+        - git tag
+        - declare -x VERSION=$(node source/scripts/auto-versioning.js)
+        - git tag v$VERSION
+        - git push -f https://${CODING_USERNAME}:${CODING_PASSWD}@e.coding.net/spiritling/dev.git v$VERSION
         - git checkout --orphan dev-blog
         - git config user.name "Travis CI"
         - git branch -v -a

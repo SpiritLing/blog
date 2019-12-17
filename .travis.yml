@@ -26,7 +26,7 @@ jobs:
         - cp -r ./public/* .
         - rm -rf ./public
         - git add -f .
-        - git commit -m "Auto Release `date +"%Y-%m-%d %H:%M:%S"`"
+        - git commit -m "Travis CI Auto Release `date +"%Y-%m-%d %H:%M:%S"`"
         - git push -f https://${GITHUB_USERNAME}:${GITHUB_PASSWD}@github.com/SpiritLing/blog.git
     - stage: dev
       name: "dev"
@@ -50,7 +50,7 @@ jobs:
         - cp -r ./public/* .
         - rm -rf ./public
         - git add -f .
-        - git commit -m "Auto Release `date +"%Y-%m-%d %H:%M:%S"`"
+        - git commit -m "Travis CI Auto Release `date +"%Y-%m-%d %H:%M:%S"`"
         - git push -f https://${CODING_USERNAME}:${CODING_PASSWD}@e.coding.net/spiritling/dev.git
         - docker login -u ${DOCKER_USERNAME} --password ${DOCKER_PASSWD}
         - docker build -t ${DOCKER_RPO}:latest .

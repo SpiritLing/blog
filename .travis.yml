@@ -1,4 +1,6 @@
 language: node_js
+services:
+  - docker
 node_js:
   - 12
 jobs:
@@ -40,6 +42,9 @@ jobs:
         - git add -f .
         - git commit -m "Auto Release `date +"%Y-%m-%d %H:%M:%S"`"
         - git push -f https://${CODING_USERNAME}:${CODING_PASSWD}@e.coding.net/spiritling/dev.git
+        - docker login -u ${DOCKER_USERNAME} --password ${DOCKER_PASSWD}
+        - docker build -t spiritling/dev-blog:latest .
+        - docker push spiritling/dev-blog
 
 notifications:
   email:

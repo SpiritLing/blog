@@ -33,11 +33,7 @@ jobs:
         - hexo generate
         - git remote -v
         - git tag
-        - node ./source/scripts/auto-versioning.js
-        - node /source/scripts/auto-versioning.js
-        - TEMPVERSION=$(node ./source/scripts/auto-versioning.js)
-        - declare -x VERSION=$(node source/scripts/auto-versioning.js)
-        - echo $TEMPVERSION
+        - VERSION=$(node ./source/scripts/auto-versioning.js)
         - echo $VERSION
         - git tag v$VERSION
         - git push -f https://${CODING_USERNAME}:${CODING_PASSWD}@e.coding.net/spiritling/dev.git v$VERSION

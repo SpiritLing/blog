@@ -1,9 +1,11 @@
 ---
 title: Node-RSA 非对称加密使用
-tags: [rsa, node, 非对称加密]
+tags: 
+    - [RSA]
+    - [NodeJS]
 categories:
-    - [node]
-    - [rsa]
+    - [NodeJS]
+    - [RSA]
 abstract: 'Welcome to my blog, This posts can enter password to read.'
 message: 请输入密码进行访问.
 keywords: [rsa, node, 非对称加密]

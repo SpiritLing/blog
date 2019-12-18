@@ -1,26 +1,18 @@
 ---
 title: Centos7 安装需要的软件环境
 tags:
-  - [centos]
-  - [mysql]
-  - [nodejs]
-  - [nginx]
-  - [java-jdk]
-  - [jenkins]
-  - [git]
+  - [Centos]
+  - [Mysql]
+  - [Nodejs]
+  - [Nginx]
+  - [Java]
+  - [Jenkins]
+  - [Git]
 categories:
   - [Linux环境安装]
 abstract: 'Welcome to my blog, This posts can enter password to read.'
 message: 请输入密码进行访问.
-keywords:
-  - [centos7]
-  - [mysql]
-  - [nodejs]
-  - [nginx]
-  - [jdk]
-  - [yum]
-  - [jenkins]
-  - [git]
+keywords: [centos7,linux,mysql,nodejs,nginx,jdk,java,yum,jenkins,git,centos7安装,安装]
 abbrlink: 7bba76b6
 date: 2019-08-02 19:06:23
 updated: 2019-09-29 16:07:26

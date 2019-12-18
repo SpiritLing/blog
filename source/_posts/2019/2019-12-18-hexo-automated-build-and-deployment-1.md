@@ -22,8 +22,6 @@ description:
 
 <!-- more -->
 
-# Hexo 静态博客网站自动化构建和部署（一）
-
 {% post_link 2019-12-18-hexo-automated-build-and-deployment-1 %}
 
 {% post_link 2019-12-18-hexo-automated-build-and-deployment-2 %}

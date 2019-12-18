@@ -17,7 +17,7 @@ docker run \
 -d \
 --restart=on-failure:10 \
 -p 80:80 \
-dev-blog-pages
+spiritling/dev-blog-pages
 ```
 [dev-blog-pages镜像](https://hub.docker.com/repository/docker/spiritling/dev-blog-pages)
 ```
@@ -28,7 +28,7 @@ docker run \
 -d \
 --restart=on-failure:10 \
 -p 80:80 \
-blog-pages
+spiritling/blog-pages
 ```
 [blog-pages镜像](https://hub.docker.com/repository/docker/spiritling/blog-pages)
 

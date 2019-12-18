@@ -1,13 +1,14 @@
 ---
 title: webpack 4.x 初级学习记录
-tags: [webpack4.x, 初级]
+tags: 
+  - [Webpack]
 categories:
-  - [webpack]
+  - [Webpack]
 abstract: 'Welcome to my blog, This posts can enter password to read.'
 message: 请输入密码进行访问.
 abbrlink: 26369b4c
 date: 2019-11-28 11:18:09
-keywords:
+keywords: [webpack4.x,webpack]
 description:
 ---
 

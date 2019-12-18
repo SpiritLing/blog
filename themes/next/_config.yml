@@ -202,6 +202,8 @@ social:
   看云: https://www.kancloud.cn/@spirit-ling || cloud
   HTTP协议: https://www.kancloud.cn/spirit-ling/http-study || book
   Docker: https://www.kancloud.cn/spirit-ling/docker-study || book
+  博客发布版: https://blog.spiritling.cn || plane
+  博客开发版: https://dev.blog.spiritling.pub || plane
   #Weibo: https://weibo.com/yourname || weibo
   #Google: https://plus.google.com/yourname || google
   #Twitter: https://twitter.com/yourname || twitter
@@ -390,8 +392,8 @@ tagcloud:
   # All values below are same as default, change them by yourself
   min: 12 # Minimun font size in px
   max: 30 # Maxium font size in px
-  start: "#ccc" # Start color (hex, rgba, hsla or color keywords)
-  end: "#111" # End color (hex, rgba, hsla or color keywords)
+  start: "#8E2DE2" # Start color (hex, rgba, hsla or color keywords)
+  end: "#4A00E0" # End color (hex, rgba, hsla or color keywords)
   amount: 200 # Amount of tags, change it if you have more than 200 tags
 
 # Google Calendar

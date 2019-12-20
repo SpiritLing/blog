@@ -8,7 +8,7 @@ tags:
   - [Github]
   - [Pages]
 categories:
-  - [Hexo]
+  - [Hexo 系列]
   - [Hexo静态网站自动化构建和部署系列]
 abstract: 'Welcome to my blog, This posts can enter password to read.'
 message: 请输入密码进行访问.
@@ -23,9 +23,8 @@ description:
 
 <!-- more -->
 
-{% post_link 2019-12-18-hexo-automated-build-and-deployment-1 %}
-
-{% post_link 2019-12-18-hexo-automated-build-and-deployment-2 %}
+[Hexo 静态博客网站自动化构建和部署（一）Hexo 介绍](/posts/b90941ba/)
+[Hexo 静态博客网站自动化构建和部署（二）自动构建和部署](/posts/f35d4de6/)
 
 ## 前提
 

@@ -71,6 +71,7 @@ category_map:
   未分类: uncategorized
   Linux环境安装: linux-environment-install
   Hexo静态网站自动化构建和部署系列: hexo-automated-build-and-deployment
+  Hexo 系列: hexo-series
 default_tag: nolabel
 tag_map:
   无标签: nolabel

@@ -10,6 +10,7 @@ abstract: 'Welcome to my blog, This posts can enter password to read.'
 message: 请输入密码进行访问.
 abbrlink: 5c3d9c03
 date: 2019-11-28 10:39:07
+updated: 2019-11-28 18:07:26
 keywords: [javascript,对象,继承]
 description:
 ---

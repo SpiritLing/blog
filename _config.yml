@@ -177,3 +177,8 @@ neat_js:
     - '**/next-boot.js'
     - '**/jquery.fancybox.pack.js'
     - '**/index.js'
+watermark:
+  enable: true
+  textEnable: true
+  rotate: -45
+  gravity: centre

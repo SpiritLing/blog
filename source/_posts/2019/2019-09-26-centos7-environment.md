@@ -63,7 +63,6 @@ service mysqld start
 ```bash
 grep "password" /var/log/mysqld.log
 ```
-{% asset_img 20190911204153.png mysql查看密码 %}
 
 2. 登录Mysql
 

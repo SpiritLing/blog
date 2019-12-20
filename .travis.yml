@@ -33,6 +33,7 @@ jobs:
       if: branch = dev
       script: 
         - npm install -g hexo
+        - npm info hexo-images-watermark
         - mv -f _config.dev.yml _config.yml
         - hexo clean
         - hexo generate

@@ -29,8 +29,7 @@ i18n_dir: :lang
 skip_render: 
   - README.md
   - Dockerfile
-  - config/*
-  - scripts/*
+  - static/**/*
 
 # Writing
 new_post_name: :year/:year-:month-:day-:title.md # File name of new posts
@@ -183,3 +182,4 @@ watermark:
   textEnable: true
   rotate: -45
   gravity: centre
+  fontPath: source/static/font/consoals.ttf

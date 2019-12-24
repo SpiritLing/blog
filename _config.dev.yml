@@ -182,4 +182,3 @@ watermark:
   textEnable: true
   rotate: -45
   gravity: centre
-  fontPath: source/static/font/consoals.ttf

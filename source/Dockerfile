@@ -1,6 +1,6 @@
 FROM nginx
 
-COPY ./config/nginx.conf /etc/nginx/conf.d/default.conf
+COPY ./static/config/nginx.conf /etc/nginx/conf.d/default.conf
 COPY . /usr/share/nginx/html/
 
 EXPOSE 80 443

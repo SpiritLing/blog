@@ -14,7 +14,7 @@ jobs:
         - hexo generate
         - git remote -v
         - git tag
-        - VERSION=$(node ./source/scripts/auto-versioning.js)
+        - VERSION=$(node ./source/static/scripts/auto-versioning.js)
         - echo $VERSION
         - git tag -a -f v$VERSION -m "Travis CI Auto Tag `date +"%Y-%m-%d %H:%M:%S"`"
         - git push -f https://${GITHUB_USERNAME}:${GITHUB_PASSWD}@github.com/SpiritLing/blog.git v$VERSION
@@ -39,7 +39,7 @@ jobs:
         - hexo generate
         - git remote -v
         - git tag
-        - VERSION=$(node ./source/scripts/auto-versioning.js)
+        - VERSION=$(node ./source/static/scripts/auto-versioning.js)
         - echo $VERSION
         - git tag -a -f v$VERSION -m "Travis CI Auto Tag `date +"%Y-%m-%d %H:%M:%S"`"
         - git push -f https://${CODING_USERNAME}:${CODING_PASSWD}@e.coding.net/spiritling/dev.git v$VERSION

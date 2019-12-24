@@ -28,18 +28,32 @@ description:
 
 下面内容都是在 `Github` 上复制过来的，我的正式版博客目前挂载在我的 `Github` 仓库 `blog`
 
+{% asset_img 5917f3d3862c9.png 演示图片 %}
+
+***
+
+[![Build Status](https://travis-ci.com/SpiritLing/hexo-images-watermark.svg?branch=master)](https://travis-ci.com/SpiritLing/hexo-images-watermark) [![npm version](https://img.shields.io/npm/v/hexo-images-watermark?label=npm%20version)](https://www.npmjs.com/package/hexo-images-watermark) [![npm package download](https://img.shields.io/npm/dm/hexo-images-watermark?label=npm%20downloads)](https://www.npmjs.com/package/hexo-images-watermark) [![NPM License](https://img.shields.io/npm/l/hexo-images-watermark)](https://spdx.org/licenses/GPL-3.0-only.html)
+
 一款用于 Hexo 静态博客网站生成时对图片添加水印。
 
 不对原图产生任何影响，在网站静态页构建过程中将原图读取，输出添加了水印的图片。
 
 在构建的静态网站中不会存在原图，只存在水印图片。
 
+> 原始文章图片
+
+[![原图，如果图片不显示请前往Github查看](https://github.com/SpiritLing/hexo-images-watermark/blob/master/static/origin_image.png)](https://github.com/SpiritLing/hexo-images-watermark/blob/master/static/origin_image.png)
+
+> 水印图片
+
+![水印图，如果图片不显示请前往Github查看](./static/change_image.png)
+
 > **一定要阅读最后的提示事项，包含现有版本的支持情况和即将添加的功能**
 
 使用 `npm` 安装插件
 
 ```shell
-npm install hexo-images-watermark
+npm install hexo-images-watermark --save
 ```
 
 在站点配置文件 `_config.yml` 中进行如下配置：
@@ -48,9 +62,10 @@ npm install hexo-images-watermark
 watermark:
     enable: true
     textEnable: true
-    rotate: -45
+    rotate: -30
     gravity: centre
 ```
+
 
 在 `hexo generate` 运行时会自动为你的 `_post` 目录下的图片添加水印，新的图片将会放到 `public` 目录中对应的位置。
 
@@ -78,6 +93,11 @@ watermark:
 **默认值**：使用配置文件中的url，一旦url不存在直接显示作者名字（SpiritLing）
 **说明**：当你使用的文字过长时，一旦转为图片后大于待加水印的图片尺寸，则会出现错误。
 
+### `fontPath`
+
+**默认值**：undefined，使用 `text-to-svg` 自带字体
+**说明**：自己加载需要的字体，支持单个字体文件，不区分中英文；如果纯中文，请只加载中文字体，例：需要加载 `source/static/font/custom.ttf` 字体直接将其写入到配置文件中即可
+
 ### `color`
 
 **默认值**：rgb(169,169,167)
@@ -86,21 +106,21 @@ watermark:
 ### `gravity`
 
 **默认值**：southeast
-**说明**：放置水印位置为什么方向，以上北下南左西右东来确定
+**说明**：设置水印位置处于什么方向，以 `上北下南左东右西` 来确定
 
 参数可用值：
 
-| 类型 | 说明 |
-| --- | --- |
-| centre | 中央 |
-| north | 北 |
-| north | 东 |
-| north | 南 |
-| north | 西 |
-| north | 东北 |
-| north | 东南 |
-| north | 西南 |
-| north | 西北 |
+| 类型 | 说明 | 备注 |
+| --- | --- | --- |
+| centre | 中央 | 图片正中间 |
+| north | 北 | 上方中间 |
+| west | 东 | 左边中间 |
+| south | 南 | 下边中间 |
+| east | 西 | 右边中间 |
+| northwest | 东北 | 左上角 |
+| southwest | 东南 | 左下角 |
+| southeast | 西南 | 右下角 | 
+| northeast | 西北 | 右上角 |
 
 ### `fontSize`
 
@@ -136,8 +156,8 @@ watermark:
 
 1. 文字不要过长过大，水印图片不要过大（太大可以使用缩放，⚠️但是缩放是全局性的），否则都会出现错误，终止生成静态页面
 2. 暂不支持图片和文字共同添加
-3. 目前只支持 `*.jpg`,`*.png` 两种格式图片，并且只支持`source/_posts`文件夹下的图片，也就是文章本地图片；同时也不支持远程图片
-4. 水印图片也不支持远程和非soucre根路径下的文件，也是只支持 `*.jpg`,`*.png` 两种格式图片
+3. 目前只支持 `*.jpg`,`*.jpeg`，`*.png` 两种格式图片，并且只支持`source/_posts`文件夹下的图片，也就是文章本地图片；同时也不支持远程图片
+4. 水印图片也不支持远程和非soucre根路径下的文件，也是只支持 `*.jpg`,`*.jpeg`，`*.png` 两种格式图片
 5. 不支持循环满图添加水印
 6. 请使用 `1.1.x` 以上版本， `1.0.x` 是进行Hexo api相关测试时使用的，版本杂乱无章，使用 `1.0.x` 版本出现任何问题，概不理会
 
@@ -145,7 +165,7 @@ watermark:
 
 - [x] 文字水印
     - [x] 自定义文字，颜色，大小
-    - [ ] 自定义字体
+    - [X] 自定义字体 - 2019-12-24 Done
     - [ ] 支持循环添加
     - [ ] 超限处理
 - [x] 图片水印

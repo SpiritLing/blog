@@ -180,5 +180,6 @@ neat_js:
 watermark:
   enable: true
   textEnable: true
-  rotate: -45
+  rotate: -30
   gravity: centre
+  fontPath: source/static/font/consoals.ttf

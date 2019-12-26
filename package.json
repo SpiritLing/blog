@@ -1,6 +1,7 @@
 {
   "name": "hexo-site",
-  "version": "0.0.4",
+  "version": "0.0.5",
+  "description": "主要添加随机诗句",
   "private": true,
   "hexo": {
     "version": "3.9.0"

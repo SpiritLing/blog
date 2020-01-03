@@ -14,7 +14,7 @@ jobs:
         - hexo generate
         - git remote -v
         - git tag
-        - export  TZ='Asia/Shanghai'
+        - export TZ='Asia/Shanghai'
         - VERSION=$(node ./source/static/scripts/auto-versioning.js)
         - echo $VERSION
         - git tag -a -f v$VERSION -m "Travis CI Auto Tag `date +"%Y-%m-%d %H:%M:%S"`"
@@ -40,7 +40,7 @@ jobs:
         - hexo generate
         - git remote -v
         - git tag
-        - export  TZ='Asia/Shanghai'
+        - export TZ='Asia/Shanghai'
         - VERSION=$(node ./source/static/scripts/auto-versioning.js)
         - echo $VERSION
         - git tag -a -f v$VERSION -m "Travis CI Auto Tag `date +"%Y-%m-%d %H:%M:%S"`"

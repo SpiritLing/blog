@@ -56,7 +56,7 @@ jobs:
         - git commit -m "Travis CI Auto Release `date +"%Y-%m-%d %H:%M:%S"`"
         - git push -f https://${CODING_USERNAME}:${CODING_PASSWD}@e.coding.net/spiritling/blog.git
         - docker login -u ${DOCKER_USERNAME_CODING} {DOCKER_URL} --password ${DOCKER_PASSWD_CODING}
-        - docker build -t ${DOCKER_RPO_CODING}:latest .
+        - docker build -t ${DOCKER_RPO_CODING} .
         - docker push ${DOCKER_RPO_CODING}
 
 notifications:

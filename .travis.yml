@@ -43,8 +43,8 @@ jobs:
         - export TZ='Asia/Shanghai'
         - VERSION=$(node ./source/static/scripts/auto-versioning.js)
         - echo $VERSION
-        - git tag -a -f v$VERSION -m "Travis CI Auto Tag `date +"%Y-%m-%d %H:%M:%S"`"
-        - git push -f https://${CODING_USERNAME}:${CODING_PASSWD}@e.coding.net/spiritling/dev.git v$VERSION
+        - git tag -a -f blog/dev-v$VERSION -m "Travis CI Auto Tag `date +"%Y-%m-%d %H:%M:%S"`"
+        - git push -f https://${CODING_USERNAME}:${CODING_PASSWD}@e.coding.net/spiritling/website.git v$VERSION
         - git checkout --orphan blog/dev
         - git config user.name "Travis CI"
         - git branch -v -a
@@ -55,9 +55,9 @@ jobs:
         - git add -f .
         - git commit -m "Travis CI Auto Release `date +"%Y-%m-%d %H:%M:%S"`"
         - git push -f https://${CODING_USERNAME}:${CODING_PASSWD}@e.coding.net/spiritling/website.git
-        - docker login -u ${DOCKER_USERNAME_CODING} ${DOCKER_URL_CODING} --password ${DOCKER_PASSWD_CODING}
-        - docker build -t ${DOCKER_RPO_CODING} .
-        - docker push ${DOCKER_RPO_CODING}
+        - docker login -u ${DOCKER_USERNAME} --password ${DOCKER_PASSWD}
+        - docker build -t ${DOCKER_RPO_DEV} .
+        - docker push ${DOCKER_RPO_DEV}
 
 notifications:
   email:

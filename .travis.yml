@@ -100,8 +100,8 @@ jobs:
         - docker push ${DOCKER_RPO_TENCENT_DEV}:latest
         - echo "coding docker buhaoshi"
     - stage: all
-        name: "all"
-        script: 
+      name: "all"
+      script: 
         - docker images
         - ls -a
 

@@ -14,11 +14,13 @@ jobs:
         - hexo generate
         - git remote -v
         - git tag
+        - export TZ='Asia/Shanghai'
         - VERSION=$(node ./source/static/scripts/auto-versioning.js)
         - echo $VERSION
         - git tag -a -f v$VERSION -m "Travis CI Auto Tag `date +"%Y-%m-%d %H:%M:%S"`"
         - git push -f https://${GITHUB_USERNAME}:${GITHUB_PASSWD}@github.com/SpiritLing/blog.git v$VERSION
-        - git checkout --orphan gh-pages
+        - git push -f https://${CODING_USERNAME}:${CODING_PASSWD}@e.coding.net/spiritling/website.git blog/master-v$VERSION
+        - git checkout --orphan blog/master
         - git config user.name "Travis CI"
         - git branch -v -a
         - git rm --cached -r -f .
@@ -27,7 +29,28 @@ jobs:
         - rm -rf ./public
         - git add -f .
         - git commit -m "Travis CI Auto Release `date +"%Y-%m-%d %H:%M:%S"`"
-        - git push -f https://${GITHUB_USERNAME}:${GITHUB_PASSWD}@github.com/SpiritLing/blog.git
+        - git push -f https://${CODING_USERNAME}:${CODING_PASSWD}@e.coding.net/spiritling/website.git
+        - docker build -t ${DOCKER_RPO_LOCAL_MASTER}:$VERSION .
+        - docker build -t ${DOCKER_RPO_LOCAL_MASTER}:latest .
+        - echo "hub docker"
+        - docker login -u ${DOCKER_HUB_USERNAME} -p ${DOCKER_HUB_PASSWD}
+        - docker tag ${DOCKER_RPO_LOCAL_MASTER}:$VERSION ${DOCKER_RPO_HUB_MASTER}:$VERSION
+        - docker tag ${DOCKER_RPO_LOCAL_MASTER}:latest ${DOCKER_RPO_HUB_MASTER}:latest
+        - docker push ${DOCKER_RPO_HUB_MASTER}:$VERSION
+        - docker push ${DOCKER_RPO_HUB_MASTER}:latest
+        - echo "aliyun docker"
+        - docker login -u ${DOCKER_ALIYUN_USERNAME} -p ${DOCKER_ALIYUN_PASSWD} ${DOCKER_ALIYUN_URL}
+        - docker tag ${DOCKER_RPO_LOCAL_MASTER}:$VERSION ${DOCKER_RPO_ALIYUN_MASTER}:$VERSION
+        - docker tag ${DOCKER_RPO_LOCAL_MASTER}:latest ${DOCKER_RPO_ALIYUN_MASTER}:latest
+        - docker push ${DOCKER_RPO_ALIYUN_MASTER}:$VERSION
+        - docker push ${DOCKER_RPO_ALIYUN_MASTER}:latest
+        - echo "tencent docker"
+        - docker login -u ${DOCKER_TENCENT_USERNAME} -p ${DOCKER_TENCENT_PASSWD} ${DOCKER_TENCENT_URL}
+        - docker tag ${DOCKER_RPO_LOCAL_MASTER}:$VERSION ${DOCKER_RPO_TENCENT_MASTER}:$VERSION
+        - docker tag ${DOCKER_RPO_LOCAL_MASTER}:latest ${DOCKER_RPO_TENCENT_MASTER}:latest
+        - docker push ${DOCKER_RPO_TENCENT_MASTER}:$VERSION
+        - docker push ${DOCKER_RPO_TENCENT_MASTER}:latest
+        - echo "coding docker buhaoshi"
     - stage: dev
       name: "dev"
       if: branch = dev
@@ -39,11 +62,13 @@ jobs:
         - hexo generate
         - git remote -v
         - git tag
+        - export TZ='Asia/Shanghai'
         - VERSION=$(node ./source/static/scripts/auto-versioning.js)
         - echo $VERSION
-        - git tag -a -f v$VERSION -m "Travis CI Auto Tag `date +"%Y-%m-%d %H:%M:%S"`"
+        - git tag -a -f blog/dev-v$VERSION -m "Travis CI Auto Tag `date +"%Y-%m-%d %H:%M:%S"`"
         - git push -f https://${CODING_USERNAME}:${CODING_PASSWD}@e.coding.net/spiritling/dev.git v$VERSION
-        - git checkout --orphan dev-blog
+        - git push -f https://${CODING_USERNAME}:${CODING_PASSWD}@e.coding.net/spiritling/website.git blog/dev-v$VERSION
+        - git checkout --orphan blog/dev
         - git config user.name "Travis CI"
         - git branch -v -a
         - git rm --cached -r -f .
@@ -52,10 +77,33 @@ jobs:
         - rm -rf ./public
         - git add -f .
         - git commit -m "Travis CI Auto Release `date +"%Y-%m-%d %H:%M:%S"`"
-        - git push -f https://${CODING_USERNAME}:${CODING_PASSWD}@e.coding.net/spiritling/dev.git
-        - docker login -u ${DOCKER_USERNAME} --password ${DOCKER_PASSWD}
-        - docker build -t ${DOCKER_RPO}:latest .
-        - docker push ${DOCKER_RPO}
+        - git push -f https://${CODING_USERNAME}:${CODING_PASSWD}@e.coding.net/spiritling/website.git
+        - docker build -t ${DOCKER_RPO_LOCAL_DEV}:$VERSION .
+        - docker build -t ${DOCKER_RPO_LOCAL_DEV}:latest .
+        - echo "hub docker"
+        - docker login -u ${DOCKER_HUB_USERNAME} -p ${DOCKER_HUB_PASSWD}
+        - docker tag ${DOCKER_RPO_LOCAL_DEV}:$VERSION ${DOCKER_RPO_HUB_DEV}:$VERSION
+        - docker tag ${DOCKER_RPO_LOCAL_DEV}:latest ${DOCKER_RPO_HUB_DEV}:latest
+        - docker push ${DOCKER_RPO_HUB_DEV}:$VERSION
+        - docker push ${DOCKER_RPO_HUB_DEV}:latest
+        - echo "aliyun docker"
+        - docker login -u ${DOCKER_ALIYUN_USERNAME} -p ${DOCKER_ALIYUN_PASSWD} ${DOCKER_ALIYUN_URL}
+        - docker tag ${DOCKER_RPO_LOCAL_DEV}:$VERSION ${DOCKER_RPO_ALIYUN_DEV}:$VERSION
+        - docker tag ${DOCKER_RPO_LOCAL_DEV}:latest ${DOCKER_RPO_ALIYUN_DEV}:latest
+        - docker push ${DOCKER_RPO_ALIYUN_DEV}:$VERSION
+        - docker push ${DOCKER_RPO_ALIYUN_DEV}:latest
+        - echo "tencent docker"
+        - docker login -u ${DOCKER_TENCENT_USERNAME} -p ${DOCKER_TENCENT_PASSWD} ${DOCKER_TENCENT_URL}
+        - docker tag ${DOCKER_RPO_LOCAL_DEV}:$VERSION ${DOCKER_RPO_TENCENT_DEV}:$VERSION
+        - docker tag ${DOCKER_RPO_LOCAL_DEV}:latest ${DOCKER_RPO_TENCENT_DEV}:latest
+        - docker push ${DOCKER_RPO_TENCENT_DEV}:$VERSION
+        - docker push ${DOCKER_RPO_TENCENT_DEV}:latest
+        - echo "coding docker buhaoshi"
+    - stage: all
+      name: "all"
+      script: 
+        - docker images
+        - ls -a
 
 notifications:
   email:

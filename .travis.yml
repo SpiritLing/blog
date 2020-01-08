@@ -102,8 +102,8 @@ jobs:
     - stage: all
         name: "all"
         script: 
-          - docker images
-          - ls -a
+        - docker images
+        - ls -a
 
 notifications:
   email:

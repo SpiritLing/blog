@@ -56,12 +56,32 @@ jobs:
         - git add -f .
         - git commit -m "Travis CI Auto Release `date +"%Y-%m-%d %H:%M:%S"`"
         - git push -f https://${CODING_USERNAME}:${CODING_PASSWD}@e.coding.net/spiritling/website.git
-        - docker login -u ${DOCKER_USERNAME} --password ${DOCKER_PASSWD}
-        - docker build -t ${DOCKER_RPO_DEV} .
-        - docker push ${DOCKER_RPO_DEV}
-        - docker tag ${DOCKER_RPO_DEV} ${DOCKER_RPO_ALIYUN}
-        - docker login -u ${DOCKER_USERNAME_ALIYUN} ${DOCKER_URL_ALIYUN} --password ${DOCKER_PASSWD_ALIYUN}
-        - docker push ${DOCKER_RPO_ALIYUN}
+        - docker build -t ${DOCKER_RPO_LOCAL_DEV}:$VERSION .
+        - docker build -t ${DOCKER_RPO_LOCAL_DEV}:latest .
+        - echo "hub docker"
+        - docker login -u ${DOCKER_HUB_USERNAME} -p ${DOCKER_HUB_PASSWD}
+        - docker tag ${DOCKER_RPO_LOCAL_DEV}:$VERSION ${DOCKER_RPO_HUB_DEV}:$VERSION
+        - docker tag ${DOCKER_RPO_LOCAL_DEV}:latest ${DOCKER_RPO_HUB_DEV}:latest
+        - docker push ${DOCKER_RPO_HUB_DEV}:$VERSION
+        - docker push ${DOCKER_RPO_HUB_DEV}:latest
+        - echo "aliyun docker"
+        - docker login -u ${DOCKER_ALIYUN_USERNAME} -p ${DOCKER_ALIYUN_PASSWD} ${DOCKER_ALIYUN_URL}
+        - docker tag ${DOCKER_RPO_LOCAL_DEV}:$VERSION ${DOCKER_RPO_ALIYUN_DEV}:$VERSION
+        - docker tag ${DOCKER_RPO_LOCAL_DEV}:latest ${DOCKER_RPO_ALIYUN_DEV}:latest
+        - docker push ${DOCKER_RPO_ALIYUN_DEV}:$VERSION
+        - docker push ${DOCKER_RPO_ALIYUN_DEV}:latest
+        - echo "tencent docker"
+        - docker login -u ${DOCKER_TENCENT_USERNAME} -p ${DOCKER_TENCENT_PASSWD} ${DOCKER_TENCENT_URL}
+        - docker tag ${DOCKER_RPO_LOCAL_DEV}:$VERSION ${DOCKER_RPO_TENCENT_DEV}:$VERSION
+        - docker tag ${DOCKER_RPO_LOCAL_DEV}:latest ${DOCKER_RPO_TENCENT_DEV}:latest
+        - docker push ${DOCKER_RPO_TENCENT_DEV}:$VERSION
+        - docker push ${DOCKER_RPO_TENCENT_DEV}:latest
+        - echo "coding docker"
+        - docker login -u ${DOCKER_CODING_USERNAME} -p ${DOCKER_CODING_PASSWD} ${DOCKER_CODING_URL}
+        - docker tag ${DOCKER_RPO_LOCAL_DEV}:$VERSION ${DOCKER_RPO_CODING_DEV}:$VERSION
+        - docker tag ${DOCKER_RPO_LOCAL_DEV}:latest ${DOCKER_RPO_CODING_DEV}:latest
+        - docker push ${DOCKER_RPO_CODING_DEV}:$VERSION
+        - docker push ${DOCKER_RPO_CODING_DEV}:latest
 
 notifications:
   email:

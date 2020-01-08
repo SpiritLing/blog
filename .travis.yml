@@ -17,8 +17,7 @@ jobs:
         - export TZ='Asia/Shanghai'
         - VERSION=$(node ./source/static/scripts/auto-versioning.js)
         - echo $VERSION
-        - git tag -a -f v$VERSION -m "Travis CI Auto Tag `date +"%Y-%m-%d %H:%M:%S"`"
-        - git push -f https://${GITHUB_USERNAME}:${GITHUB_PASSWD}@github.com/SpiritLing/blog.git v$VERSION
+        - git tag -a -f blog/master-v$VERSION -m "Travis CI Auto Tag `date +"%Y-%m-%d %H:%M:%S"`"
         - git push -f https://${CODING_USERNAME}:${CODING_PASSWD}@e.coding.net/spiritling/website.git blog/master-v$VERSION
         - git checkout --orphan blog/master
         - git config user.name "Travis CI"
@@ -50,7 +49,6 @@ jobs:
         - docker tag ${DOCKER_RPO_LOCAL_MASTER}:latest ${DOCKER_RPO_TENCENT_MASTER}:latest
         - docker push ${DOCKER_RPO_TENCENT_MASTER}:$VERSION
         - docker push ${DOCKER_RPO_TENCENT_MASTER}:latest
-        - echo "coding docker buhaoshi"
     - stage: dev
       name: "dev"
       if: branch = dev
@@ -66,7 +64,6 @@ jobs:
         - VERSION=$(node ./source/static/scripts/auto-versioning.js)
         - echo $VERSION
         - git tag -a -f blog/dev-v$VERSION -m "Travis CI Auto Tag `date +"%Y-%m-%d %H:%M:%S"`"
-        - git push -f https://${CODING_USERNAME}:${CODING_PASSWD}@e.coding.net/spiritling/dev.git v$VERSION
         - git push -f https://${CODING_USERNAME}:${CODING_PASSWD}@e.coding.net/spiritling/website.git blog/dev-v$VERSION
         - git checkout --orphan blog/dev
         - git config user.name "Travis CI"
@@ -98,7 +95,6 @@ jobs:
         - docker tag ${DOCKER_RPO_LOCAL_DEV}:latest ${DOCKER_RPO_TENCENT_DEV}:latest
         - docker push ${DOCKER_RPO_TENCENT_DEV}:$VERSION
         - docker push ${DOCKER_RPO_TENCENT_DEV}:latest
-        - echo "coding docker buhaoshi"
     - stage: all
       name: "all"
       script: 

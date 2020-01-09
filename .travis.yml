@@ -3,26 +3,31 @@ services:
   - docker
 node_js:
   - 12
+cache:
+  apt: true
+  directories:
+    - node_modules
 jobs:
   include:
     - stage: master
       name: "master"
       if: branch = master
-      script: 
+      before_script:
+        - export TZ='Asia/Shanghai'
         - npm install -g hexo
         - hexo clean
         - hexo generate
+      script: 
         - git remote -v
         - git tag
-        - export TZ='Asia/Shanghai'
         - VERSION=$(node ./source/static/scripts/auto-versioning.js)
         - echo $VERSION
+        - git config user.name "Travis CI"
         - git tag -a -f blog/master-v$VERSION -m "Travis CI Auto Tag `date +"%Y-%m-%d %H:%M:%S"`"
         - git tag -a -f v$VERSION -m "Travis CI Auto Tag `date +"%Y-%m-%d %H:%M:%S"`"
         - git push -f https://${CODING_USERNAME}:${CODING_PASSWD}@e.coding.net/spiritling/website.git blog/master-v$VERSION
         - git push -f https://${GITHUB_USERNAME}:${GITHUB_PASSWD}@github.com/SpiritLing/blog.git v$VERSION
         - git checkout --orphan blog/master
-        - git config user.name "Travis CI"
         - git branch -v -a
         - git rm --cached -r -f .
         - rm -rf `ls | grep -v public`
@@ -48,21 +53,21 @@ jobs:
     - stage: dev
       name: "dev"
       if: branch = dev
-      script: 
+      before_script:
+        - export TZ='Asia/Shanghai' # 改变时区
         - npm install -g hexo
-        - npm info hexo-images-watermark
         - mv -f _config.dev.yml _config.yml
         - hexo clean
         - hexo generate
+      script: 
         - git remote -v
         - git tag
-        - export TZ='Asia/Shanghai'
         - VERSION=$(node ./source/static/scripts/auto-versioning.js)
         - echo $VERSION
-        - git tag -a -f blog/dev-v$VERSION -m "Travis CI Auto Tag `date +"%Y-%m-%d %H:%M:%S"`"
-        - git push -f https://${CODING_USERNAME}:${CODING_PASSWD}@e.coding.net/spiritling/website.git blog/dev-v$VERSION
-        - git checkout --orphan blog/dev
         - git config user.name "Travis CI"
+      before_deploy:
+        - git tag -a -f blog/dev-v$VERSION -m "Travis CI Auto Tag `date +"%Y-%m-%d %H:%M:%S"`"
+        - git checkout --orphan blog/dev
         - git branch -v -a
         - git rm --cached -r -f .
         - rm -rf `ls | grep -v public`
@@ -70,7 +75,10 @@ jobs:
         - rm -rf ./public
         - git add -f .
         - git commit -m "Travis CI Auto Release `date +"%Y-%m-%d %H:%M:%S"`"
+      deploy:
+        - git push -f https://${CODING_USERNAME}:${CODING_PASSWD}@e.coding.net/spiritling/website.git blog/dev-v$VERSION
         - git push -f https://${CODING_USERNAME}:${CODING_PASSWD}@e.coding.net/spiritling/website.git
+      after_deploy:
         - docker build -t ${DOCKER_RPO_LOCAL_DEV}:$VERSION .
         - docker build -t ${DOCKER_RPO_LOCAL_DEV}:latest .
         - echo "hub docker"
@@ -85,6 +93,8 @@ jobs:
         - docker tag ${DOCKER_RPO_LOCAL_DEV}:latest ${DOCKER_RPO_ALIYUN_DEV}:latest
         - docker push ${DOCKER_RPO_ALIYUN_DEV}:$VERSION
         - docker push ${DOCKER_RPO_ALIYUN_DEV}:latest
+      after_script:
+        - docker images
     - stage: all
       name: "all"
       script: 

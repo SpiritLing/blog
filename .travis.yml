@@ -59,14 +59,13 @@ jobs:
         - mv -f _config.dev.yml _config.yml
         - hexo clean
         - hexo generate
-      script: 
         - git remote -v
         - git tag
         - VERSION=$(node ./source/static/scripts/auto-versioning.js)
         - echo $VERSION
         - git config user.name "Travis CI"
-      before_deploy:
         - git tag -a -f blog/dev-v$VERSION -m "Travis CI Auto Tag `date +"%Y-%m-%d %H:%M:%S"`"
+        - git push -f https://${CODING_USERNAME}:${CODING_PASSWD}@e.coding.net/spiritling/website.git blog/dev-v$VERSION
         - git checkout --orphan blog/dev
         - git branch -v -a
         - git rm --cached -r -f .
@@ -75,10 +74,8 @@ jobs:
         - rm -rf ./public
         - git add -f .
         - git commit -m "Travis CI Auto Release `date +"%Y-%m-%d %H:%M:%S"`"
-      deploy:
-        - git push -f https://${CODING_USERNAME}:${CODING_PASSWD}@e.coding.net/spiritling/website.git blog/dev-v$VERSION
         - git push -f https://${CODING_USERNAME}:${CODING_PASSWD}@e.coding.net/spiritling/website.git
-      after_deploy:
+      script:
         - docker build -t ${DOCKER_RPO_LOCAL_DEV}:$VERSION .
         - docker build -t ${DOCKER_RPO_LOCAL_DEV}:latest .
         - echo "hub docker"
@@ -93,7 +90,6 @@ jobs:
         - docker tag ${DOCKER_RPO_LOCAL_DEV}:latest ${DOCKER_RPO_ALIYUN_DEV}:latest
         - docker push ${DOCKER_RPO_ALIYUN_DEV}:$VERSION
         - docker push ${DOCKER_RPO_ALIYUN_DEV}:latest
-      after_script:
         - docker images
     - stage: all
       name: "all"

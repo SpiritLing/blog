@@ -18,7 +18,9 @@ jobs:
         - VERSION=$(node ./source/static/scripts/auto-versioning.js)
         - echo $VERSION
         - git tag -a -f blog/master-v$VERSION -m "Travis CI Auto Tag `date +"%Y-%m-%d %H:%M:%S"`"
+        - git tag -a -f v$VERSION -m "Travis CI Auto Tag `date +"%Y-%m-%d %H:%M:%S"`"
         - git push -f https://${CODING_USERNAME}:${CODING_PASSWD}@e.coding.net/spiritling/website.git blog/master-v$VERSION
+        - git push -f https://${GITHUB_USERNAME}:${GITHUB_PASSWD}@github.com/SpiritLing/blog.git v$VERSION
         - git checkout --orphan blog/master
         - git config user.name "Travis CI"
         - git branch -v -a

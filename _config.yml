@@ -182,4 +182,4 @@ watermark:
   textEnable: true
   rotate: -30
   gravity: centre
-  fontPath: source/static/font/consoals.ttf
+  fontPath: source/static/font/JetBrainsMono.ttf

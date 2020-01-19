@@ -65,7 +65,9 @@ jobs:
         - echo $VERSION
         - git config user.name "Travis CI"
         - git tag -a -f blog/dev-v$VERSION -m "Travis CI Auto Tag `date +"%Y-%m-%d %H:%M:%S"`"
+        - git tag -a -f dev-v$VERSION -m "Travis CI Auto Tag `date +"%Y-%m-%d %H:%M:%S"`"
         - git push -f https://${CODING_USERNAME}:${CODING_PASSWD}@e.coding.net/spiritling/website.git blog/dev-v$VERSION
+        - git push -f https://${GITHUB_USERNAME}:${GITHUB_PASSWD}@github.com/SpiritLing/blog.git dev-v$VERSION
         - git checkout --orphan blog/dev
         - git branch -v -a
         - git rm --cached -r -f .
@@ -91,11 +93,43 @@ jobs:
         - docker push ${DOCKER_RPO_ALIYUN_DEV}:$VERSION
         - docker push ${DOCKER_RPO_ALIYUN_DEV}:latest
         - docker images
-    - stage: all
-      name: "all"
-      script: 
-        - docker images
-        - ls -a
+    - stage: backup
+      name: "dev backup"
+      if: branch = dev
+      script:
+        - export TZ='Asia/Shanghai' # 改变时区
+        - npm install -g hexo
+        - mv -f _config.dev.yml _config.yml
+        - hexo clean
+        - hexo generate
+        - git remote -v
+        - git checkout --orphan backup/dev
+        - git branch -v -a
+        - git rm --cached -r -f .
+        - rm -rf `ls | grep -v public`
+        - cp -r ./public/* .
+        - rm -rf ./public
+        - git add -f .
+        - git commit -m "Travis CI Auto Release `date +"%Y-%m-%d %H:%M:%S"`"
+        - git push -f https://${GITHUB_USERNAME}:${GITHUB_PASSWD}@github.com/SpiritLing/blog.git
+    - stage: backup
+      name: "master backup"
+      if: branch = master
+      script:
+        - export TZ='Asia/Shanghai' # 改变时区
+        - npm install -g hexo
+        - hexo clean
+        - hexo generate
+        - git remote -v
+        - git checkout --orphan backup/master
+        - git branch -v -a
+        - git rm --cached -r -f .
+        - rm -rf `ls | grep -v public`
+        - cp -r ./public/* .
+        - rm -rf ./public
+        - git add -f .
+        - git commit -m "Travis CI Auto Release `date +"%Y-%m-%d %H:%M:%S"`"
+        - git push -f https://${GITHUB_USERNAME}:${GITHUB_PASSWD}@github.com/SpiritLing/blog.git
 
 notifications:
   email:

@@ -1,9 +1,12 @@
 ---
 title: IIS进行URL重写——实现https重定向，文件类型隐藏访问重写，nodejs等服务重写等等
 tags:
-  - 无标签
+  - [iis]
+  - [反向代理]
+  - [url重写]
+  - [url rewrite]
 categories:
-  - 未分类
+  - [iis]
 abstract: 'Welcome to my blog, This posts can enter password to read.'
 message: 请输入密码进行访问.
 abbrlink: 82f57ccc

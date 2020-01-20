@@ -76,6 +76,9 @@ tag_map:
   无标签: nolabel
   Auto CI: auto-ci
   Auto Deploy: auto-deploy
+  反向代理: reverse-proxy
+  url重写: url-rewrite-zh
+  url rewrite: url-rewrite
 
 # Date / Time format
 ## Hexo uses Moment.js to parse and display date
@@ -182,4 +185,4 @@ watermark:
   textEnable: true
   rotate: -30
   gravity: centre
-  fontPath: source/static/font/consoals.ttf
+  fontPath: source/static/font/JetBrainsMono.ttf

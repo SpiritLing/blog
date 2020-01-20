@@ -1,7 +1,7 @@
 {
   "name": "hexo-site",
   "version": "0.0.6",
-  "description": "github备份",
+  "description": "iis url重写 文章 并且添加版本描述",
   "private": true,
   "hexo": {
     "version": "3.9.0"

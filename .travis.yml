@@ -22,9 +22,11 @@ jobs:
         - git tag
         - VERSION=$(node ./source/static/scripts/auto-versioning.js)
         - echo $VERSION
+        - DESCRIPTION=$(node ./source/static/scripts/auto-description.js)
+        - echo $DESCRIPTION
         - git config user.name "Travis CI"
-        - git tag -a -f blog/master-v$VERSION -m "Travis CI Auto Tag `date +"%Y-%m-%d %H:%M:%S"`"
-        - git tag -a -f v$VERSION -m "Travis CI Auto Tag `date +"%Y-%m-%d %H:%M:%S"`"
+        - git tag -a -f blog/master-v$VERSION -m "Travis CI Auto Tag `date +"%Y-%m-%d %H:%M:%S"` DES：$DESCRIPTION"
+        - git tag -a -f v$VERSION -m "Travis CI Auto Tag `date +"%Y-%m-%d %H:%M:%S"` DES：$DESCRIPTION"
         - git push -f https://${CODING_USERNAME}:${CODING_PASSWD}@e.coding.net/spiritling/website.git blog/master-v$VERSION
         - git push -f https://${GITHUB_USERNAME}:${GITHUB_PASSWD}@github.com/SpiritLing/blog.git v$VERSION
         - git checkout --orphan blog/master
@@ -34,7 +36,7 @@ jobs:
         - cp -r ./public/* .
         - rm -rf ./public
         - git add -f .
-        - git commit -m "Travis CI Auto Release `date +"%Y-%m-%d %H:%M:%S"`"
+        - git commit -m "Travis CI Auto Release `date +"%Y-%m-%d %H:%M:%S"` DES：$DESCRIPTION"
         - git push -f https://${CODING_USERNAME}:${CODING_PASSWD}@e.coding.net/spiritling/website.git
         - docker build -t ${DOCKER_RPO_LOCAL_MASTER}:$VERSION .
         - docker build -t ${DOCKER_RPO_LOCAL_MASTER}:latest .
@@ -63,8 +65,10 @@ jobs:
         - git tag
         - VERSION=$(node ./source/static/scripts/auto-versioning.js)
         - echo $VERSION
+        - DESCRIPTION=$(node ./source/static/scripts/auto-description.js)
+        - echo $DESCRIPTION
         - git config user.name "Travis CI"
-        - git tag -a -f blog/dev-v$VERSION -m "Travis CI Auto Tag `date +"%Y-%m-%d %H:%M:%S"`"
+        - git tag -a -f blog/dev-v$VERSION -m "Travis CI Auto Tag `date +"%Y-%m-%d %H:%M:%S"` DES：$DESCRIPTION"
         - git push -f https://${CODING_USERNAME}:${CODING_PASSWD}@e.coding.net/spiritling/website.git blog/dev-v$VERSION
         - git checkout --orphan blog/dev
         - git branch -v -a
@@ -73,7 +77,7 @@ jobs:
         - cp -r ./public/* .
         - rm -rf ./public
         - git add -f .
-        - git commit -m "Travis CI Auto Release `date +"%Y-%m-%d %H:%M:%S"`"
+        - git commit -m "Travis CI Auto Release `date +"%Y-%m-%d %H:%M:%S"` DES：$DESCRIPTION"
         - git push -f https://${CODING_USERNAME}:${CODING_PASSWD}@e.coding.net/spiritling/website.git
       script:
         - docker build -t ${DOCKER_RPO_LOCAL_DEV}:$VERSION .

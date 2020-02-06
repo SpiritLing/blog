@@ -65,8 +65,23 @@ URL重写就是首先获得一个进入的URL请求然后把它重新写成网�
 
 {% asset_img 1076304-20180412200848094-824241073.png web平台安装工具 %}
 
-5. 最近（2019低2020初）不知道 web平台安装工具出什么问题了，一直安装不了，有时候甚至会打不开，所以这里留个官网下载单模块的链接：[url rewrite](https://www.iis.net/downloads/microsoft/url-rewrite)，[Application Request Routing](https://www.iis.net/downloads/microsoft/application-request-routing)，[All Modules Downloads](https://www.iis.net/downloads)；拉到底下会有下载链接，url rewrite 有对应的中文版本。
+5. 最近（2019底2020初）不知道 web平台安装工具出什么问题了，一直安装不了，有时候甚至会打不开，所以这里留个官网下载单模块的链接：[url rewrite](https://www.iis.net/downloads/microsoft/url-rewrite)，[Application Request Routing](https://www.iis.net/downloads/microsoft/application-request-routing)，[All Modules Downloads](https://www.iis.net/downloads)；拉到底下会有下载链接，url rewrite 有对应的中文版本。
+
 6. 下载安装即可
+
+### 网盘链接
+
+1. 百度网盘：
+
+- Application Request Routing：链接：https://pan.baidu.com/s/1Wg6u6IJVMqa-DeK5y8Ym6w 提取码：rcic
+- url rewrite：链接：https://pan.baidu.com/s/1ePW6HOkqqyHPqNNWyaQ43w 提取码：x27v
+
+2. 腾讯网盘：
+
+- Application Request Routing：链接：https://share.weiyun.com/5iI6q1W 密码：u47bv6
+- url rewrite：链接：https://share.weiyun.com/52XIKfL 密码：57fkan
+
+
 
 ## 应用程序请求路由设置
 

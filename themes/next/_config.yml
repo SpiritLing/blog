@@ -680,11 +680,11 @@ gitalk:
   client_id: 81bb54561a9fc7a684b0 # GitHub Application Client ID
   client_secret: 6027b3e015c56382ecb30bbe2fa34536d7e20c86 # GitHub Application Client Secret
   admin_user: SpiritLing # GitHub repo owner and collaborators, only these guys can initialize gitHub issues
-  dev_github_id: AlbertXiaoPeng
-  dev_repo: dev_comment # Local Dev Repository name to store issues
-  dev_client_id: fd14d8315f28153946ac # Local Dev GitHub Application Client ID
-  dev_client_secret: c7c98ed9259990d0c4998e998934192752946e33 # Local Dev GitHub Application Client Secret
-  dev_admin_user: AlbertXiaoPeng
+  dev_github_id: SpiritLing-Team
+  dev_repo: dev.blog.comment # Local Dev Repository name to store issues
+  dev_client_id: 56a81429ec3280775f99 # Local Dev GitHub Application Client ID
+  dev_client_secret: f49fd3dbfa60c125d28f980d09b5f674c9802fa7 # Local Dev GitHub Application Client Secret
+  dev_admin_user: SpiritLing
   distraction_free_mode: true # Facebook-like distraction free mode
   # Gitalk's display language depends on user's browser or system environment
   # If you want everyone visiting your site to see a uniform language, you can set a force language value

@@ -1,13 +1,13 @@
 {
   "name": "hexo-site",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "",
   "private": true,
   "hexo": {
     "version": "3.9.0"
   },
   "scripts": {
-    "dev":"hexo clean && hexo generate"
+    "dev": "hexo clean && hexo generate"
   },
   "dependencies": {
     "hexo": "^3.9.0",

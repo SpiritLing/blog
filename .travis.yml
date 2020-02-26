@@ -29,12 +29,16 @@ jobs:
         - git tag -a -f v$VERSION -m "Travis CI Auto Tag `date +"%Y-%m-%d %H:%M:%S"` DES：$DESCRIPTION"
         - git push -f https://${CODING_USERNAME}:${CODING_PASSWD}@e.coding.net/spiritling/website.git blog/master-v$VERSION
         - git push -f https://${GITHUB_USERNAME}:${GITHUB_PASSWD}@github.com/SpiritLing/blog.git v$VERSION
-        - git checkout --orphan blog/master
+        - git checkout --orphan gh-pages
         - git branch -v -a
         - git rm --cached -r -f .
         - rm -rf `ls | grep -v public`
         - cp -r ./public/* .
         - rm -rf ./public
+        - git add -f .
+        - git commit -m "Travis CI Auto Release `date +"%Y-%m-%d %H:%M:%S"` DES：$DESCRIPTION"
+        - git push -f https://${GITHUB_USERNAME}:${GITHUB_PASSWD}@github.com/SpiritLing/blog.git
+        - git checkout --orphan blog/master
         - git add -f .
         - git commit -m "Travis CI Auto Release `date +"%Y-%m-%d %H:%M:%S"` DES：$DESCRIPTION"
         - git push -f https://${CODING_USERNAME}:${CODING_PASSWD}@e.coding.net/spiritling/website.git
@@ -70,6 +74,10 @@ jobs:
         - rm -rf `ls | grep -v public`
         - cp -r ./public/* .
         - rm -rf ./public
+        - git add -f .
+        - git commit -m "Travis CI Auto Release `date +"%Y-%m-%d %H:%M:%S"` DES：$DESCRIPTION"
+        - git push -f https://${CODING_USERNAME}:${CODING_PASSWD}@e.coding.net/spiritling/website.git
+        - git checkout --orphan blog/dev-test
         - git add -f .
         - git commit -m "Travis CI Auto Release `date +"%Y-%m-%d %H:%M:%S"` DES：$DESCRIPTION"
         - git push -f https://${CODING_USERNAME}:${CODING_PASSWD}@e.coding.net/spiritling/website.git

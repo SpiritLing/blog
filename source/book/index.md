@@ -17,27 +17,8 @@ type: "book"
 
 ***
 
-{% centerquote %} **HTTP 协议学习** {% endcenterquote %}
-
-{% cq %} 
-本文章是我学习 《图解HTTP》时所记录的内容
-本文章目前为七章，内含多节
-目前HTTP协议关于状态码以及字段等值已经更新完毕，其余将抽空进行更新
-{% endcq %}
-
-<div class="text-center"><div>{% button http://http.kancloud.spiritling.wiki ,阅读,book fa-fw,阅读%}</div></div>
-
-
-
-***
-
-{% centerquote %} **Docker 书籍** {% endcenterquote %}
-
-
-{% cq %} 
-Docker 是个划时代的开源项目，它彻底释放了计算虚拟化的威力，极大提高了应用的维护效率，降低了云计算应用开发的成本！
-使用 Docker，可以让应用的部署、测试和分发都变得前所未有的高效和轻松！
-无论是应用开发者、运维人员、还是其他信息技术从业人员，都有必要认识和掌握 Docker，节约有限的生命。
-{% endcq %}
-
-<div class="text-center"><div>{% button http://docker.kancloud.spiritling.wiki ,阅读,book fa-fw,阅读%}</div></div>
+| 书名(地址) |
+| :---: |
+| [HTTP 协议学习](http://http.kancloud.spiritling.wiki) |
+| [Docker 学习](http://docker.kancloud.spiritling.wiki) |
+| [Redux 学习文档](http://redux.kancloud.spiritling.wiki/1516720) |

@@ -1,7 +1,7 @@
 {
   "name": "hexo-site",
   "version": "0.0.8",
-  "description": "",
+  "description": "添加两篇文章",
   "private": true,
   "hexo": {
     "version": "3.9.0"

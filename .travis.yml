@@ -29,7 +29,7 @@ jobs:
         - git tag -a -f v$VERSION -m "Travis CI Auto Tag `date +"%Y-%m-%d %H:%M:%S"` DES：$DESCRIPTION"
         - git push -f https://${CODING_USERNAME}:${CODING_PASSWD}@e.coding.net/spiritling/website.git blog/master-v$VERSION
         - git push -f https://${GITHUB_USERNAME}:${GITHUB_PASSWD}@github.com/SpiritLing/blog.git v$VERSION
-        - git checkout --orphan gh-page
+        - git checkout --orphan gh-pages
         - git branch -v -a
         - git rm --cached -r -f .
         - rm -rf `ls | grep -v public`
@@ -88,6 +88,7 @@ jobs:
         - docker push ${DOCKER_RPO_HUB_DEV}:latest
 
 notifications:
+  webhooks: https://oapi.dingtalk.com/robot/send?access_token=264a4d7b0f593f76848605e55d6d982c54c499cdc089cc5068f832a14b6abd62
   email:
     recipients:
       - ling_dark_portal@163.com

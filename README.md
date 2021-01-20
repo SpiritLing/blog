@@ -1,0 +1,1 @@
+[![构建状态](https://spiritling.coding.net/badges/blog-static-website/job/219280/release/build.svg)](https://spiritling.coding.net/p/blog-static-website/ci/job)
